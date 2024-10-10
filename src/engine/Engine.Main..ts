@@ -60,6 +60,14 @@ export async function search_promoscore(
 }
 
 let DATA: any[] = [];
+function formatPromotions(
+  promotions: SearchRequest<SearchRequestPromotion | SearchRequestArticle>[]
+) {
+  return promotions.map((e)=> ({
+    ...e,
+    price: (parseFloat(e.product_price) / 100).toFixed(2)
+}))
+}
 
 export async function start(
   type: ContentType,
@@ -77,7 +85,7 @@ export async function start(
   let totalPages = 1;
 
   if (body) {
-    body[0].params.hitsPerPage = 10;
+    body[0].params.hitsPerPage = 100;
   } else {
     logger?.error("Body is Undefined");
   }
@@ -89,8 +97,8 @@ export async function start(
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { hits, nbPages } = results[0];
       console.log("Nb Page", nbPages);
-
-      DATA = DATA.concat(hits);
+      const dhits = formatPromotions(hits);
+      DATA = DATA.concat(dhits);
       totalPages = nbPages as unknown as number;
       logger?.log(`Fetching page ${currentPage} Done Out of ${totalPages}`);
       Writer.appendData(DATA);
