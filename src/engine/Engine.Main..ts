@@ -60,13 +60,11 @@ export async function search_promoscore(
 }
 
 let DATA: any[] = [];
-function formatPromotions(
-  promotions: SearchRequest<SearchRequestPromotion | SearchRequestArticle>[]
-) {
-  return promotions.map((e)=> ({
+function formatPromotions(promotions: any[]) {
+  return promotions.map((e) => ({
     ...e,
-    price: (parseFloat(e.product_price) / 100).toFixed(2)
-}))
+    price: (parseFloat(e.product_price) / 100).toFixed(2),
+  }));
 }
 
 export async function start(
