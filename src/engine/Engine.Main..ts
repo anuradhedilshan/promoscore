@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CB } from "../../electron/render";
+import { CSVWriter } from "./CsvWriter";
 import {
   defaultRequestBodyArticle,
   defaultRequestBodyPromotion,
 } from "./default";
-import JSONWriter from "./JSONWriter";
 import { ContentType, Post } from "./Shared/lib";
 import Logger from "./Shared/Logger";
 import {
@@ -60,11 +60,37 @@ export async function search_promoscore(
 }
 
 let DATA: any[] = [];
-function formatPromotions(promotions: any[]) {
-  return promotions.map((e) => ({
-    ...e,
-    price: (parseFloat(e.product_price) / 100).toFixed(2),
-  }));
+function formatPromotions(promotions: any[], contentType: ContentType) {
+  return promotions.map((e) => {
+    e = cleanData(e, contentType);
+
+    return {
+      ...e,
+      price: (parseFloat(e.product_price) / 100).toFixed(2),
+    };
+  });
+}
+
+interface CleanConfig {
+  articles: string[];
+  promotions: string[];
+}
+
+// Configuration for fields to remove
+const REMOVE_FIELDS: CleanConfig = {
+  articles: ["_index", "picture"],
+  promotions: ["_geoloc", "_index", "graphee_id", "locations", "picture"],
+};
+
+function cleanData(data: any, contentType: ContentType): any | any[] {
+  // Handle single object
+  if (!Array.isArray(data)) {
+    const cleanedData = { ...data };
+    REMOVE_FIELDS[contentType].forEach((field) => {
+      delete cleanedData[field];
+    });
+    return cleanedData;
+  }
 }
 
 export async function start(
@@ -76,9 +102,9 @@ export async function start(
 ) {
   logger?.log("Start Engine in Main.... ");
   const name = `${type}_${Date.now()}`;
-  const Writer = new JSONWriter(filePath, name, logger);
+  const Writer = new CSVWriter(filePath,name,logger);
 
-  Writer.writeHeader(JSON.stringify(body ? body[0].params : `${type}`));
+
   let currentPage = 0;
   let totalPages = 1;
 
@@ -95,11 +121,12 @@ export async function start(
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { hits, nbPages } = results[0];
       console.log("Nb Page", nbPages);
-      const dhits = formatPromotions(hits);
+      const dhits = formatPromotions(hits, type);
       DATA = DATA.concat(dhits);
       totalPages = nbPages as unknown as number;
       logger?.log(`Fetching page ${currentPage} Done Out of ${totalPages}`);
-      Writer.appendData(DATA);
+      
+      Writer.writeData(DATA);
       // Progress Calculate
       currentPage++;
       const progressPercentage = ((currentPage / totalPages) * 100).toFixed(2);
@@ -109,6 +136,6 @@ export async function start(
       logger?.error("Got Error in Main Loop");
     }
   } while (currentPage < totalPages);
-  Writer.close();
+  await Writer.close();
   return {};
 }

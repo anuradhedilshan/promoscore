@@ -3,11 +3,11 @@ var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { en
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 import { dialog, app, BrowserWindow, ipcMain } from "electron";
 import { fileURLToPath } from "node:url";
-import path$2 from "node:path";
-import fs$1 from "fs";
-import path$1 from "path";
+import path$1 from "node:path";
+import require$$6, { createWriteStream, rename } from "fs";
+import stream, { Transform, Readable } from "stream";
 import require$$1, { TextEncoder as TextEncoder$1 } from "util";
-import stream, { Readable } from "stream";
+import require$$1$1 from "path";
 import require$$3 from "http";
 import require$$4 from "https";
 import require$$0$1 from "url";
@@ -16,6 +16,139 @@ import require$$0$3 from "tty";
 import require$$0$2 from "os";
 import zlib from "zlib";
 import { EventEmitter } from "events";
+class CSVWriter {
+  constructor(filePath, name, logger2) {
+    __publicField(this, "writeStream");
+    __publicField(this, "firstRow", true);
+    __publicField(this, "batchSize", 5e3);
+    __publicField(this, "logger");
+    __publicField(this, "tempFilePath");
+    __publicField(this, "finalFilePath");
+    var _a;
+    this.finalFilePath = `${filePath}/${name}.csv`;
+    this.tempFilePath = `${filePath}/.${name}.csv`;
+    this.writeStream = createWriteStream(this.tempFilePath, { flags: "a" });
+    this.logger = logger2;
+    (_a = this.logger) == null ? void 0 : _a.log(`CSVWriter initialized with temp file: ${this.tempFilePath}`);
+  }
+  /**
+   * Convert object to CSV line
+   */
+  objectToCSVLine(obj) {
+    return Object.values(obj).map((value) => {
+      if (value === null || value === void 0) return '""';
+      if (typeof value === "object") return `"${JSON.stringify(value).replace(/"/g, '""')}"`;
+      if (typeof value === "string") return `"${value.replace(/"/g, '""')}"`;
+      if (typeof value === "boolean") return value ? "true" : "false";
+      return value;
+    }).join(",") + "\n";
+  }
+  /**
+   * Write headers based on object keys
+   */
+  writeHeaders(data) {
+    var _a;
+    if (this.firstRow) {
+      const headers = Object.keys(data).join(",") + "\n";
+      this.writeStream.write(headers);
+      this.firstRow = false;
+      (_a = this.logger) == null ? void 0 : _a.log("Headers written to CSV file");
+    }
+  }
+  /**
+   * Write data array to CSV
+   */
+  async writeData(data) {
+    var _a;
+    (_a = this.logger) == null ? void 0 : _a.log(`Writing ${data.length} records to CSV`);
+    return new Promise((resolve, reject) => {
+      var _a2;
+      try {
+        if (data.length > 0) {
+          this.writeHeaders(data[0]);
+        }
+        const transformStream = new Transform({
+          objectMode: true,
+          transform: (chunk, _encoding, callback) => {
+            const csvLine = this.objectToCSVLine(chunk);
+            callback(null, csvLine);
+          }
+        });
+        transformStream.pipe(this.writeStream, { end: false });
+        let processedCount = 0;
+        const processBatch = () => {
+          var _a3;
+          const batch = data.slice(
+            processedCount,
+            processedCount + this.batchSize
+          );
+          if (batch.length === 0) {
+            transformStream.end();
+            resolve();
+            (_a3 = this.logger) == null ? void 0 : _a3.log("All data written to CSV");
+            return;
+          }
+          let canContinue = true;
+          batch.forEach((item) => {
+            canContinue = transformStream.write(item);
+          });
+          processedCount += batch.length;
+          if (canContinue) {
+            setImmediate(processBatch);
+          } else {
+            transformStream.once("drain", processBatch);
+          }
+        };
+        processBatch();
+      } catch (error) {
+        (_a2 = this.logger) == null ? void 0 : _a2.error(`Error writing data: ${error}`);
+        reject(error);
+      }
+    });
+  }
+  /**
+   * Write multiple arrays
+   */
+  async writeArrays(dataArrays) {
+    for (const dataArray of dataArrays) {
+      await this.writeData(dataArray);
+    }
+  }
+  /**
+   * Set batch size for memory optimization
+   */
+  setBatchSize(size) {
+    var _a;
+    this.batchSize = size;
+    (_a = this.logger) == null ? void 0 : _a.log(`Batch size set to ${size}`);
+  }
+  /**
+   * Close the write stream and rename file
+   */
+  async close() {
+    var _a;
+    (_a = this.logger) == null ? void 0 : _a.log("Closing write stream");
+    return new Promise((resolve, reject) => {
+      this.writeStream.end();
+      this.writeStream.on("finish", () => {
+        rename(this.tempFilePath, this.finalFilePath, (err) => {
+          var _a2, _b;
+          if (err) {
+            (_a2 = this.logger) == null ? void 0 : _a2.error(`Error renaming file: ${err}`);
+            reject(err);
+          } else {
+            (_b = this.logger) == null ? void 0 : _b.log(`File renamed to ${this.finalFilePath}`);
+            resolve();
+          }
+        });
+      }).on("error", (err) => {
+        var _a2;
+        (_a2 = this.logger) == null ? void 0 : _a2.error(`Error closing write stream: ${err}`);
+        reject(err);
+      });
+    });
+  }
+}
 const defaultRequestBodyPromotion = [
   {
     indexName: "search-promoscore-promotions",
@@ -53,81 +186,6 @@ const defaultRequestBodyArticle = [
     }
   }
 ];
-class JSONWriter {
-  constructor(filePath, filename, logger2) {
-    __publicField(this, "writeStream");
-    __publicField(this, "isOpen", false);
-    __publicField(this, "prev", false);
-    __publicField(this, "FIlename");
-    __publicField(this, "logger");
-    var _a;
-    fs$1.mkdirSync(filePath, { recursive: true });
-    this.FIlename = path$1.join(
-      filePath,
-      `${filename.replace(/[^a-zA-Z0-9]/g, "_")}.json`
-    );
-    const tempFilePath = path$1.join(filePath, `.${filename}`);
-    this.writeStream = fs$1.createWriteStream(tempFilePath);
-    this.writeStream.write('{ "params": \n');
-    this.isOpen = true;
-    this.logger = logger2;
-    (_a = this.logger) == null ? void 0 : _a.warn(`temp file created in ${this.writeStream.path}`);
-  }
-  writeHeader(data) {
-    if (!this.isOpen) {
-      throw new Error("JSONWriter is closed. Cannot append data.");
-    }
-    this.writeStream.write(`${data},
-"data": [`);
-  }
-  appendData(data) {
-    if (!this.isOpen) {
-      throw new Error("JSONWriter is closed. Cannot append data.");
-    }
-    const dataArray = Array.isArray(data) ? data : [data];
-    dataArray.forEach((item, index) => {
-      if (index > 0 || this.prev) {
-        this.writeStream.write(",\n");
-      }
-      this.writeStream.write(JSON.stringify(item, null, 2));
-    });
-    this.prev = true;
-  }
-  close() {
-    return new Promise((resolve, reject) => {
-      if (!this.isOpen) {
-        resolve();
-        return;
-      }
-      this.writeStream.write("\n]}");
-      console.log("write end");
-      this.writeStream.end(() => {
-        const tempFile = this.writeStream.path;
-        fs$1.copyFile(tempFile, this.FIlename, (err) => {
-          var _a;
-          if (err) {
-            (_a = this.logger) == null ? void 0 : _a.error(`Error copying file: ${err}`);
-            reject(err);
-            return;
-          }
-          fs$1.unlink(tempFile, (unlinkErr) => {
-            var _a2, _b;
-            if (unlinkErr) {
-              (_a2 = this.logger) == null ? void 0 : _a2.error(`Error deleting temporary file: ${unlinkErr}`);
-              reject(unlinkErr);
-              return;
-            }
-            (_b = this.logger) == null ? void 0 : _b.warn(
-              `temp file in <br/> ${this.writeStream.path} moved to <br/> ${this.FIlename}`
-            );
-            this.isOpen = false;
-            resolve();
-          });
-        });
-      });
-    });
-  }
-}
 function bind(fn, thisArg) {
   return function wrap2() {
     return fn.apply(thisArg, arguments);
@@ -11551,7 +11609,7 @@ var mimeDb = require$$0;
  */
 (function(exports) {
   var db = mimeDb;
-  var extname = path$1.extname;
+  var extname = require$$1$1.extname;
   var EXTRACT_TYPE_REGEXP = /^\s*([^;\s]*)(?:;|\s|$)/;
   var TEXT_TYPE_REGEXP = /^text\//i;
   exports.charset = charset;
@@ -11787,11 +11845,11 @@ var populate$1 = function(dst, src2) {
 };
 var CombinedStream = combined_stream;
 var util = require$$1;
-var path = path$1;
+var path = require$$1$1;
 var http$1 = require$$3;
 var https$1 = require$$4;
 var parseUrl$2 = require$$0$1.parse;
-var fs = fs$1;
+var fs = require$$6;
 var Stream = stream.Stream;
 var mime = mimeTypes;
 var asynckit = asynckit$1;
@@ -16154,17 +16212,32 @@ async function search_promoscore(type, body) {
   return data;
 }
 let DATA = [];
-function formatPromotions(promotions) {
-  return promotions.map((e) => ({
-    ...e,
-    price: (parseFloat(e.product_price) / 100).toFixed(2)
-  }));
+function formatPromotions(promotions, contentType) {
+  return promotions.map((e) => {
+    e = cleanData(e, contentType);
+    return {
+      ...e,
+      price: (parseFloat(e.product_price) / 100).toFixed(2)
+    };
+  });
+}
+const REMOVE_FIELDS = {
+  articles: ["_index", "picture"],
+  promotions: ["_geoloc", "_index", "graphee_id", "locations", "picture"]
+};
+function cleanData(data, contentType) {
+  if (!Array.isArray(data)) {
+    const cleanedData = { ...data };
+    REMOVE_FIELDS[contentType].forEach((field) => {
+      delete cleanedData[field];
+    });
+    return cleanedData;
+  }
 }
 async function start(type, filePath, body) {
   logger$1 == null ? void 0 : logger$1.log("Start Engine in Main.... ");
   const name = `${type}_${Date.now()}`;
-  const Writer = new JSONWriter(filePath, name, logger$1);
-  Writer.writeHeader(JSON.stringify(body ? body[0].params : `${type}`));
+  const Writer = new CSVWriter(filePath, name, logger$1);
   let currentPage = 0;
   let totalPages = 1;
   if (body) {
@@ -16178,11 +16251,11 @@ async function start(type, filePath, body) {
       const { results } = await search_promoscore(type, body);
       const { hits, nbPages } = results[0];
       console.log("Nb Page", nbPages);
-      const dhits = formatPromotions(hits);
+      const dhits = formatPromotions(hits, type);
       DATA = DATA.concat(dhits);
       totalPages = nbPages;
       logger$1 == null ? void 0 : logger$1.log(`Fetching page ${currentPage} Done Out of ${totalPages}`);
-      Writer.appendData(DATA);
+      Writer.writeData(DATA);
       currentPage++;
       const progressPercentage = (currentPage / totalPages * 100).toFixed(2);
       fireEvent$1("progress", progressPercentage);
@@ -16191,7 +16264,7 @@ async function start(type, filePath, body) {
       logger$1 == null ? void 0 : logger$1.error("Got Error in Main Loop");
     }
   } while (currentPage < totalPages);
-  Writer.close();
+  await Writer.close();
   return {};
 }
 class ErrorDisplay {
@@ -16214,21 +16287,21 @@ class ErrorDisplay {
     );
   }
 }
-const __dirname = path$2.dirname(fileURLToPath(import.meta.url));
-process.env.APP_ROOT = path$2.join(__dirname, "..");
+const __dirname = path$1.dirname(fileURLToPath(import.meta.url));
+process.env.APP_ROOT = path$1.join(__dirname, "..");
 const VITE_DEV_SERVER_URL = process.env["VITE_DEV_SERVER_URL"];
-const MAIN_DIST = path$2.join(process.env.APP_ROOT, "dist-electron");
-const RENDERER_DIST = path$2.join(process.env.APP_ROOT, "dist");
-process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL ? path$2.join(process.env.APP_ROOT, "public") : RENDERER_DIST;
+const MAIN_DIST = path$1.join(process.env.APP_ROOT, "dist-electron");
+const RENDERER_DIST = path$1.join(process.env.APP_ROOT, "dist");
+process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL ? path$1.join(process.env.APP_ROOT, "public") : RENDERER_DIST;
 let win;
 function createWindow() {
   win = new BrowserWindow({
     width: 1e3,
     height: 800,
     resizable: false,
-    icon: path$2.join(process.env.VITE_PUBLIC, "logo.png"),
+    icon: path$1.join(process.env.VITE_PUBLIC, "logo.png"),
     webPreferences: {
-      preload: path$2.join(__dirname, "./preload.mjs"),
+      preload: path$1.join(__dirname, "./preload.mjs"),
       nodeIntegration: true,
       contextIsolation: false
     }
@@ -16239,7 +16312,7 @@ function createWindow() {
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL);
   } else {
-    win.loadFile(path$2.join(RENDERER_DIST, "index.html"));
+    win.loadFile(path$1.join(RENDERER_DIST, "index.html"));
   }
   win.setMenu(null);
   win.webContents.openDevTools({ mode: "detach" });
