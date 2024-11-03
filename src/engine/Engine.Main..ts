@@ -96,13 +96,11 @@ function cleanData(data: any, contentType: ContentType): any | any[] {
 export async function start(
   type: ContentType,
   filePath: string,
-  body:
-    | SearchRequest<SearchRequestPromotion | SearchRequestArticle>[]
+  body: SearchRequest<SearchRequestPromotion | SearchRequestArticle>[]
 ) {
   logger?.log("Start Engine in Main.... ");
   const name = `${type}_${Date.now()}`;
-  const Writer = new CSVWriter(filePath,name,logger);
-
+  const Writer = new CSVWriter(filePath, name, logger);
 
   let currentPage = 0;
   let totalPages = 1;
@@ -119,25 +117,28 @@ export async function start(
       body[0].params.page = currentPage;
       const { results } = await search_promoscore(type, body);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { hits, nbPages } = results[0];
-      console.log("Nb Page", nbPages);
-      const dhits = formatPromotions(hits, type);
-      DATA = dhits;
-      totalPages = nbPages as unknown as number;
-      logger?.log(`Fetching page ${currentPage} Done Out of ${totalPages}`);
-      
-      Writer.writeData(DATA);
+      if (results.length > 0) {
+        const { hits, nbPages } = results[0];
+        console.log("Nb Page", nbPages);
+        const dhits = formatPromotions(hits, type);
+        DATA = dhits;
+        totalPages = nbPages as unknown as number;
+        logger?.log(`Fetching page ${currentPage} Done Out of ${totalPages}`);
 
-      // Progress Calculate
+        Writer.writeData(DATA);
+
+        // Progress Calculate
+      }
       currentPage++;
       const progressPercentage = ((currentPage / totalPages) * 100).toFixed(2);
       fireEvent("progress", progressPercentage);
-      DATA = []
+      DATA = [];
       if (currentPage == totalPages - 1) fireEvent("complete", "done");
     } catch (e) {
+      console.error(e);
       logger?.error("Got Error in Main Loop");
     }
-  } while (currentPage < totalPages+1);
+  } while (currentPage < totalPages + 1);
   await Writer.close();
   return {};
 }

@@ -63,6 +63,7 @@ const LogTerminal: React.FC = () => {
           break;
         case "complete":
           dispatch({ type: ActionType.SET_STATUS, payload: "idle" });
+          setProgress(0);
           break;
         default:
           console.warn("Unhandled event type:", type);
