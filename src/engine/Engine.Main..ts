@@ -96,9 +96,8 @@ function cleanData(data: any, contentType: ContentType): any | any[] {
 export async function start(
   type: ContentType,
   filePath: string,
-  body?:
+  body:
     | SearchRequest<SearchRequestPromotion | SearchRequestArticle>[]
-    | undefined
 ) {
   logger?.log("Start Engine in Main.... ");
   const name = `${type}_${Date.now()}`;
@@ -117,25 +116,28 @@ export async function start(
   do {
     try {
       logger?.log(`Fetching page ${currentPage}`);
+      body[0].params.page = currentPage;
       const { results } = await search_promoscore(type, body);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { hits, nbPages } = results[0];
       console.log("Nb Page", nbPages);
       const dhits = formatPromotions(hits, type);
-      DATA = DATA.concat(dhits);
+      DATA = dhits;
       totalPages = nbPages as unknown as number;
       logger?.log(`Fetching page ${currentPage} Done Out of ${totalPages}`);
       
       Writer.writeData(DATA);
+
       // Progress Calculate
       currentPage++;
       const progressPercentage = ((currentPage / totalPages) * 100).toFixed(2);
       fireEvent("progress", progressPercentage);
+      DATA = []
       if (currentPage == totalPages - 1) fireEvent("complete", "done");
     } catch (e) {
       logger?.error("Got Error in Main Loop");
     }
-  } while (currentPage < totalPages);
+  } while (currentPage < totalPages+1);
   await Writer.close();
   return {};
 }

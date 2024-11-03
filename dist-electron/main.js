@@ -154,7 +154,7 @@ const defaultRequestBodyPromotion = [
     indexName: "search-promoscore-promotions",
     params: {
       aroundLatLng: "44.4267674, 26.1025384",
-      aroundRadius: 5e3,
+      aroundRadius: 5e4,
       facets: [
         "brand",
         "category",
@@ -163,9 +163,10 @@ const defaultRequestBodyPromotion = [
         "promo_score",
         "retailer"
       ],
+      filters: "is_promo:true",
       highlightPostTag: "__/ais-highlight__",
       highlightPreTag: "__ais-highlight__",
-      hitsPerPage: 2,
+      hitsPerPage: 30,
       maxValuesPerFacet: 20,
       page: 0,
       query: ""
@@ -16248,22 +16249,24 @@ async function start(type, filePath, body) {
   do {
     try {
       logger$1 == null ? void 0 : logger$1.log(`Fetching page ${currentPage}`);
+      body[0].params.page = currentPage;
       const { results } = await search_promoscore(type, body);
       const { hits, nbPages } = results[0];
       console.log("Nb Page", nbPages);
       const dhits = formatPromotions(hits, type);
-      DATA = DATA.concat(dhits);
+      DATA = dhits;
       totalPages = nbPages;
       logger$1 == null ? void 0 : logger$1.log(`Fetching page ${currentPage} Done Out of ${totalPages}`);
       Writer.writeData(DATA);
       currentPage++;
       const progressPercentage = (currentPage / totalPages * 100).toFixed(2);
       fireEvent$1("progress", progressPercentage);
+      DATA = [];
       if (currentPage == totalPages - 1) fireEvent$1("complete", "done");
     } catch (e) {
       logger$1 == null ? void 0 : logger$1.error("Got Error in Main Loop");
     }
-  } while (currentPage < totalPages);
+  } while (currentPage < totalPages + 1);
   await Writer.close();
   return {};
 }
@@ -16315,7 +16318,6 @@ function createWindow() {
     win.loadFile(path$1.join(RENDERER_DIST, "index.html"));
   }
   win.setMenu(null);
-  win.webContents.openDevTools({ mode: "detach" });
 }
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {

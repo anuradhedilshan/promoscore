@@ -67,7 +67,7 @@ function createWindow() {
     win.loadFile(path.join(RENDERER_DIST, "index.html"));
   }
   win.setMenu(null);
-   win.webContents.openDevTools({ mode: 'detach' })
+  //  win.webContents.openDevTools({ mode: 'detach' })
 }
 
 // Quit when all windows are closed, except on macOS. There, it's common
