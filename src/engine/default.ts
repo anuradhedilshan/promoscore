@@ -9,7 +9,7 @@ const defaultRequestBodyPromotion: SearchRequest<SearchRequestPromotion>[] = [
     indexName: "search-promoscore-promotions",
     params: {
       aroundLatLng: "44.4267674, 26.1025384",
-      aroundRadius: 50000,
+      aroundRadius: 5000,
       facets: [
         "brand",
         "category",
@@ -23,7 +23,7 @@ const defaultRequestBodyPromotion: SearchRequest<SearchRequestPromotion>[] = [
       highlightPreTag: "__ais-highlight__",
       hitsPerPage: 30,
       maxValuesPerFacet: 20,
-      page: 0,
+      page: 1,
       query: "",
     },
   },

@@ -100,7 +100,7 @@ export async function start(
 ) {
   logger?.log("Start Engine in Main.... ");
   const name = `${type}_${Date.now()}`;
-  const Writer = new CSVWriter(filePath, name, logger);
+  const Writer = new CSVWriter(filePath, name, logger, type);
 
   let currentPage = 0;
   let totalPages = 1;
