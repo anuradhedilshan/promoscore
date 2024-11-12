@@ -2,7 +2,6 @@
 import { createWriteStream, rename } from "fs";
 import { Transform } from "stream";
 import Logger from "./Shared/Logger";
-import { ContentType } from "./Shared/lib";
 
 export class CSVWriter {
   private writeStream: NodeJS.WritableStream;
@@ -11,14 +10,13 @@ export class CSVWriter {
   private logger: Logger | null;
   private tempFilePath: string;
   private finalFilePath: string;
-  private type: ContentType;
   private readonly bufferSize: number = 16384; // 16KB buffer for better performance
 
   constructor(
     filePath: string,
     name: string,
     logger: Logger | null,
-    type: ContentType
+    // type: ContentType
   ) {
     this.finalFilePath = `${filePath}/${name}.csv`;
     this.tempFilePath = `${filePath}/.${name}.csv`;
@@ -27,7 +25,6 @@ export class CSVWriter {
       highWaterMark: this.bufferSize,
     });
     this.logger = logger;
-    this.type = type;
     this.logger?.log(
       `CSVWriter initialized with temp file: ${this.tempFilePath}`
     );
