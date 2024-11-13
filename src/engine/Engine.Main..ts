@@ -63,16 +63,21 @@ let DATA: any[] = [];
 function formatPromotions(promotions: any[], contentType: ContentType) {
   return promotions.map((e) => {
     e = cleanData(e, contentType);
-
-    return {
-      ...e,
-      product_price: e.product_price
-        ? (parseFloat(e.product_price) / 100).toFixed(2)
-        : e.product_price,
-      product_unit_price: e.product_price
-        ? (parseFloat(e.product_unit_price) / 100).toFixed(2)
-        : e.product_unit_price,
-    };
+    
+    // Create base object without price properties
+    const formattedPromotion = { ...e };
+    
+    // Only add product_price if it exists
+    if (e.product_price) {
+      formattedPromotion.product_price = (parseFloat(e.product_price) / 100).toFixed(2);
+    }
+    
+    // Only add product_unit_price if it exists
+    if (e.product_unit_price) {  // Fixed the property name here
+      formattedPromotion.product_unit_price = (parseFloat(e.product_unit_price) / 100).toFixed(2);
+    }
+    
+    return formattedPromotion;
   });
 }
 

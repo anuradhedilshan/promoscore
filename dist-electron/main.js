@@ -16254,11 +16254,14 @@ let DATA = [];
 function formatPromotions(promotions, contentType) {
   return promotions.map((e) => {
     e = cleanData(e, contentType);
-    return {
-      ...e,
-      product_price: e.product_price ? (parseFloat(e.product_price) / 100).toFixed(2) : e.product_price,
-      product_unit_price: e.product_price ? (parseFloat(e.product_unit_price) / 100).toFixed(2) : e.product_unit_price
-    };
+    const formattedPromotion = { ...e };
+    if (e.product_price) {
+      formattedPromotion.product_price = (parseFloat(e.product_price) / 100).toFixed(2);
+    }
+    if (e.product_unit_price) {
+      formattedPromotion.product_unit_price = (parseFloat(e.product_unit_price) / 100).toFixed(2);
+    }
+    return formattedPromotion;
   });
 }
 const REMOVE_FIELDS = {
