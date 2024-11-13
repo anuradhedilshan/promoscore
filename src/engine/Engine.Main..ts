@@ -66,7 +66,12 @@ function formatPromotions(promotions: any[], contentType: ContentType) {
 
     return {
       ...e,
-      price: (parseFloat(e.product_price) / 100).toFixed(2),
+      product_price: e.product_price
+        ? (parseFloat(e.product_price) / 100).toFixed(2)
+        : e.product_price,
+      product_unit_price: e.product_price
+        ? (parseFloat(e.product_unit_price) / 100).toFixed(2)
+        : e.product_unit_price,
     };
   });
 }
