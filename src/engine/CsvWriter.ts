@@ -11,13 +11,9 @@ export class CSVWriter {
   private tempFilePath: string;
   private finalFilePath: string;
   private readonly bufferSize: number = 16384; // 16KB buffer for better performance
+  private headersWritten: boolean = false;
 
-  constructor(
-    filePath: string,
-    name: string,
-    logger: Logger | null,
-    // type: ContentType
-  ) {
+  constructor(filePath: string, name: string, logger: Logger | null) {
     this.finalFilePath = `${filePath}/${name}.csv`;
     this.tempFilePath = `${filePath}/.${name}.csv`;
     this.writeStream = createWriteStream(this.tempFilePath, {
@@ -54,43 +50,74 @@ export class CSVWriter {
   }
 
   /**
-   * Convert object to CSV line ensuring header order
+   * Extract all unique headers from data array
+   */
+  private extractHeaders(data: Record<string, any>[]): string[] {
+    const headerSet = new Set<string>();
+    data.forEach((obj) => {
+      Object.keys(obj).forEach((key) => headerSet.add(key));
+    });
+    return Array.from(headerSet);
+  }
+
+  /**
+   * Update headers with any new fields found
+   */
+  private updateHeaders(newHeaders: string[]): boolean {
+    let headersChanged = false;
+    newHeaders.forEach((header) => {
+      if (!this.headers.includes(header)) {
+        this.headers.push(header);
+        headersChanged = true;
+      }
+    });
+    return headersChanged;
+  }
+
+  /**
+   * Convert object to CSV line ensuring all headers are represented
    */
   private objectToCSVLine(obj: Record<string, any>): string {
     return (
-      this.headers.map((header) => this.escapeCSVValue(obj[header])).join(",") +
-      "\n"
+      this.headers
+        .map((header) => this.escapeCSVValue(obj[header] ?? ""))
+        .join(",") + "\n"
     );
   }
 
   /**
-   * Write headers and store them for future reference
+   * Write headers to CSV file
    */
-  private writeHeaders(data: Record<string, any>): void {
-    if (this.headers.length === 0) {
-      this.headers = Object.keys(data);
-      const headerLine =
-        this.headers.map((header) => this.escapeCSVValue(header)).join(",") +
-        "\n";
+  private writeHeaders(): void {
+    const headerLine =
+      this.headers.map((header) => this.escapeCSVValue(header)).join(",") +
+      "\n";
 
-      this.writeStream.write(headerLine);
-      this.logger?.log("Headers written to CSV file");
-    }
+    this.writeStream.write(headerLine);
+    this.headersWritten = true;
+    this.logger?.log(`Headers written to CSV file: ${this.headers.join(", ")}`);
   }
 
   /**
-   * Write data array to CSV with optimized streaming
+   * Write data array to CSV with optimized streaming and complete headers
    */
   public async writeData(data: Record<string, any>[]): Promise<void> {
     if (!Array.isArray(data) || data.length === 0) {
       return;
     }
 
-    this.logger?.log(`Writing ${data.length} records to CSV`);
+    this.logger?.log(`Processing ${data.length} records for CSV`);
 
     return new Promise((resolve, reject) => {
       try {
-        this.writeHeaders(data[0]);
+        // Extract and update headers from new data
+        const newHeaders = this.extractHeaders(data);
+        const headersChanged = this.updateHeaders(newHeaders);
+
+        // If headers changed or haven't been written yet, write them
+        if (!this.headersWritten || headersChanged) {
+          this.writeHeaders();
+        }
 
         const transformStream = new Transform({
           objectMode: true,
@@ -148,10 +175,20 @@ export class CSVWriter {
   }
 
   /**
-   * Write multiple arrays with improved error handling
+   * Write multiple arrays while maintaining complete headers
    */
   public async writeArrays(dataArrays: Record<string, any>[][]): Promise<void> {
     try {
+      // First pass: collect all possible headers
+      const allHeaders = new Set<string>();
+      dataArrays.forEach((dataArray) => {
+        dataArray.forEach((obj) => {
+          Object.keys(obj).forEach((key) => allHeaders.add(key));
+        });
+      });
+      this.headers = Array.from(allHeaders);
+
+      // Second pass: write data
       for (const dataArray of dataArrays) {
         await this.writeData(dataArray);
       }
@@ -161,9 +198,6 @@ export class CSVWriter {
     }
   }
 
-  /**
-   * Set batch size with validation
-   */
   public setBatchSize(size: number): void {
     if (size < 1) {
       throw new Error("Batch size must be greater than 0");
@@ -172,14 +206,12 @@ export class CSVWriter {
     this.logger?.log(`Batch size set to ${size}`);
   }
 
-  /**
-   * Close the write stream and rename file with proper cleanup
-   */
   public async close(): Promise<void> {
     this.logger?.log("Closing write stream");
     return new Promise((resolve, reject) => {
       const cleanup = (error?: Error) => {
         this.headers = [];
+        this.headersWritten = false;
         if (error) {
           this.logger?.error(`Error during close: ${error}`);
           reject(error);

@@ -46,5 +46,5 @@ export type CB = (
     | "details"
     | "warn"
     | "data",
-  message: number | boolean | string | null | object | Array<any>
+  message: number | boolean | string | null | object | Array<unknown>
 ) => void;
