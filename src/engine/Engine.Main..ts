@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CB } from "../../electron/render";
-import { CSVWriter } from "./CsvWriter";
 import {
   defaultRequestBodyArticle,
   defaultRequestBodyPromotion,
 } from "./default";
+import JSONWriter from "./JSONWriter";
 import { ContentType, Post } from "./Shared/lib";
 import Logger from "./Shared/Logger";
 import {
@@ -63,20 +63,25 @@ let DATA: any[] = [];
 function formatPromotions(promotions: any[], contentType: ContentType) {
   return promotions.map((e) => {
     e = cleanData(e, contentType);
-    
+
     // Create base object without price properties
     const formattedPromotion = { ...e };
-    
+
     // Only add product_price if it exists
     if (e.product_price) {
-      formattedPromotion.product_price = (parseFloat(e.product_price) / 100).toFixed(2);
+      formattedPromotion.product_price = (
+        parseFloat(e.product_price) / 100
+      ).toFixed(2);
     }
-    
+
     // Only add product_unit_price if it exists
-    if (e.product_unit_price) {  // Fixed the property name here
-      formattedPromotion.product_unit_price = (parseFloat(e.product_unit_price) / 100).toFixed(2);
+    if (e.product_unit_price) {
+      // Fixed the property name here
+      formattedPromotion.product_unit_price = (
+        parseFloat(e.product_unit_price) / 100
+      ).toFixed(2);
     }
-    
+
     return formattedPromotion;
   });
 }
@@ -110,7 +115,8 @@ export async function start(
 ) {
   logger?.log("Start Engine in Main.... ");
   const name = `${type}_${Date.now()}`;
-  const Writer = new CSVWriter(filePath, name, logger);
+  // const Writer = new CSVWriter(filePath, name, logger);
+  const Writer = new JSONWriter(filePath, name, logger);
 
   let currentPage = 0;
   let totalPages = 1;
@@ -127,7 +133,7 @@ export async function start(
       body[0].params.page = currentPage;
       const { results } = await search_promoscore(type, body);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      if (results.length > 0) {
+      if (results.length > 0 && results[0].hits) {
         const { hits, nbPages } = results[0];
         console.log("Nb Page", nbPages);
         const dhits = formatPromotions(hits, type);
@@ -135,7 +141,7 @@ export async function start(
         totalPages = nbPages as unknown as number;
         logger?.log(`Fetching page ${currentPage} Done Out of ${totalPages}`);
 
-        Writer.writeData(DATA);
+        Writer.appendData(DATA);
 
         // Progress Calculate
       }
@@ -145,10 +151,15 @@ export async function start(
       DATA = [];
       if (currentPage == totalPages - 1) fireEvent("complete", "done");
     } catch (e) {
-      console.error(e);
-      logger?.error("Got Error in Main Loop");
+      if (e instanceof Error) {
+        console.error(e);
+        logger?.error(`Main Loop Error: ${e.message}`);
+      } else {
+        console.error("Caught a non-Error value:", e);
+        logger?.error("Main Loop Error: An unexpected error occurred");
+      }
     }
-  } while (currentPage < totalPages + 1);
+  } while (currentPage < totalPages);
   await Writer.close();
   return {};
 }

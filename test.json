@@ -1,0 +1,34 @@
+{
+  "objectID": "ro_web_29602658",
+  "_index": "search-promoscore-promotions",
+  "_score": null,
+  "id": "29602658",
+  "article": {
+    "id": "art_2atfuMvl8JwsYHbac7HwCH5bf4p",
+    "name": "Servetele 3 straturi",
+    "slug": "art_2atfuMvl8JwsYHbac7HwCH5bf4p",
+    "brand": "Mototol",
+    "packaging": "1 pachet 90 buc."
+  },
+  "picture": "https://cdn.promoscore.io/RO/articles/5193cb0a33b904852cf964bf4458f41f",
+  "country": "RO",
+  "market": "Servetele cutie",
+  "retailer": {
+    "name": "Freshful"
+  },
+  "score": "A",
+  "discount": 0,
+  "externalLink": "https://www.graphee.net/ro/bf21ce4c-a95b-4c1d-ab28-b96620eb826d?origin=promoscore",
+  "period": {},
+  "status": "active",
+  "daysRemaining": 0,
+  "unitPrice": {
+    "amount": 6,
+    "currency": "RON",
+    "unit": "buc."
+  },
+  "mapPrice": {
+    "amount": 529,
+    "currency": "RON"
+  }
+}

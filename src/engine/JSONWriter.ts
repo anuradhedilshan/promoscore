@@ -20,7 +20,7 @@ class JSONWriter {
 
     const tempFilePath = path.join(filePath, `.${filename}`);
     this.writeStream = fs.createWriteStream(tempFilePath);
-    this.writeStream.write('{ "params": \n');
+    this.writeStream.write('[');
     this.isOpen = true;
     this.logger = logger;
     this.logger?.warn(`temp file created in ${this.writeStream.path}`);
@@ -56,7 +56,7 @@ class JSONWriter {
         return;
       }
 
-      this.writeStream.write("\n]}");
+      this.writeStream.write("\n]");
       console.log("write end");
 
       this.writeStream.end(() => {

@@ -6,7 +6,7 @@ import {
 
 const defaultRequestBodyPromotion: SearchRequest<SearchRequestPromotion>[] = [
   {
-    indexName: "search-promoscore-promotions",
+    indexName: "_cheapest",
     params: {
       aroundLatLng: "44.4267674, 26.1025384",
       aroundRadius: 5000,
@@ -14,31 +14,32 @@ const defaultRequestBodyPromotion: SearchRequest<SearchRequestPromotion>[] = [
         "brand",
         "category",
         "characteristics_search",
+        "is_promo",
         "origin",
         "promo_score",
         "retailer",
       ],
-      filters: "is_promo:true",
+      filters: "",
       highlightPostTag: "__/ais-highlight__",
       highlightPreTag: "__ais-highlight__",
-      hitsPerPage: 30,
-      maxValuesPerFacet: 20,
+      hitsPerPage: 2,
+      maxValuesPerFacet: 2,
       page: 1,
       query: "",
     },
   },
 ];
-
 const defaultRequestBodyArticle: SearchRequest<SearchRequestArticle>[] = [
   {
     indexName: "search-promoscore-articles",
     params: {
       facets: ["brand", "category", "characteristics_search", "origin"],
+      filters: "country:ro",
       highlightPostTag: "__/ais-highlight__",
       highlightPreTag: "__ais-highlight__",
       hitsPerPage: 2,
-      maxValuesPerFacet: 20,
-      page: 0,
+      maxValuesPerFacet: 2,
+      page: 2,
       query: "",
     },
   },

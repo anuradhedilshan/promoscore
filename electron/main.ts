@@ -117,8 +117,6 @@ type ProductData = Article | Promotion;
 
 // Helper functions
 const formatPrice = (price: number): string => price.toFixed(2);
-const calculateDiscount = (discount: number): number =>
-  Math.round(discount * 100);
 
 // Main processing function
 function processProductData(
@@ -147,22 +145,18 @@ function processProductData(
       return {
         timestamp: "*",
         level: "table",
-        message: `${article.name} | ${article.brand} | ${article.category} | ${article.packaging} | ${article.tendency_3m}%`,
+        message: `${article.name} | ${article.brand} | ${article.category} | ${article.packaging}`,
       };
     } else {
       const promo = item as Promotion;
-      const price = parseFloat(promo.product_price) / 100;
-      const discount = calculateDiscount(promo.product_discount);
-      const pricePerUnit = parseFloat(promo.product_unit_price) / 100;
+      const price = promo.mapPrice.amount / 100;
 
       return {
         timestamp: "*",
         level: "table",
-        message: `${promo.article_name} | ${promo.retailer} | ${formatPrice(
-          price
-        )} lei | ${discount}% | ${formatPrice(pricePerUnit)} lei/${
-          promo.price_unit
-        }`,
+        message: `${promo.brand ? promo.brand : "N/A"} | ${
+          promo.market
+        } |${formatPrice(price)}/${promo.mapPrice.currency}`,
       };
     }
   });

@@ -33,23 +33,57 @@ export interface BaseProduct {
   packaging: string;
 }
 
-export interface Article extends BaseProduct {
+export interface Article {
   objectID: string;
+  _index: string;
+  _score: null;
+  id: string;
+  slug: string | null;
   name: string;
-  ean: string;
-  tendency_3m: string;
-  tendency_1y: string;
-  tendency_full: string;
+  picture: string;
+  brand: string;
+  category: string;
+  market: string;
+  packaging: string;
+  tendency: {
+    "3m": number;
+    "1y": number;
+    full: number;
+  };
 }
 
-export interface Promotion extends BaseProduct {
+export interface Promotion {
   objectID: string;
-  article_name: string;
-  retailer: string;
-  product_price: string;
-  product_discount: number;
-  product_unit_price: string;
-  price_unit: string;
-  promo_score: string;
-  locations: string[];
+  _index: string;
+  _score: null;
+  id: string;
+  brand: string;
+  article: {
+    id: string;
+    name: string;
+    slug: string;
+    brand: string;
+    packaging: string;
+  };
+  picture: string;
+  country: string;
+  market: string;
+  retailer: {
+    name: string;
+  };
+  score: string;
+  discount: number;
+  externalLink: string;
+  period: Record<string, never>;
+  status: string;
+  daysRemaining: number;
+  unitPrice: {
+    amount: number;
+    currency: string;
+    unit: string;
+  };
+  mapPrice: {
+    amount: number;
+    currency: string;
+  };
 }
