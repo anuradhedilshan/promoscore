@@ -68,17 +68,17 @@ function formatPromotions(promotions: any[], contentType: ContentType) {
     const formattedPromotion = { ...e };
 
     // Only add product_price if it exists
-    if (e.product_price) {
-      formattedPromotion.product_price = (
-        parseFloat(e.product_price) / 100
+    if (e.mapPrice) {
+      formattedPromotion.mapPrice.amount = (
+        parseFloat(e.mapPrice.amount) / 100
       ).toFixed(2);
     }
 
     // Only add product_unit_price if it exists
-    if (e.product_unit_price) {
+    if (e.unitPrice) {
       // Fixed the property name here
-      formattedPromotion.product_unit_price = (
-        parseFloat(e.product_unit_price) / 100
+      formattedPromotion.unitPrice.amount = (
+        parseFloat(e.unitPrice.amount) / 100
       ).toFixed(2);
     }
 

@@ -39,7 +39,7 @@ const defaultRequestBodyArticle: SearchRequest<SearchRequestArticle>[] = [
       highlightPreTag: "__ais-highlight__",
       hitsPerPage: 2,
       maxValuesPerFacet: 2,
-      page: 2,
+      page: 1,
       query: "",
     },
   },

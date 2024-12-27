@@ -51,7 +51,7 @@ const defaultRequestBodyArticle = [
       highlightPreTag: "__ais-highlight__",
       hitsPerPage: 2,
       maxValuesPerFacet: 2,
-      page: 2,
+      page: 1,
       query: ""
     }
   }
@@ -16161,11 +16161,11 @@ function formatPromotions(promotions, contentType) {
   return promotions.map((e) => {
     e = cleanData(e, contentType);
     const formattedPromotion = { ...e };
-    if (e.product_price) {
-      formattedPromotion.product_price = (parseFloat(e.product_price) / 100).toFixed(2);
+    if (e.mapPrice) {
+      formattedPromotion.mapPrice.amount = (parseFloat(e.mapPrice.amount) / 100).toFixed(2);
     }
-    if (e.product_unit_price) {
-      formattedPromotion.product_unit_price = (parseFloat(e.product_unit_price) / 100).toFixed(2);
+    if (e.unitPrice) {
+      formattedPromotion.unitPrice.amount = (parseFloat(e.unitPrice.amount) / 100).toFixed(2);
     }
     return formattedPromotion;
   });
