@@ -154,7 +154,7 @@ function processProductData(
       return {
         timestamp: "*",
         level: "table",
-        message: `${promo.brand ? promo.brand : "N/A"} | ${
+        message: `${promo.article.brand ? promo.article.brand : "N/A"} | ${
           promo.market
         } |${formatPrice(price)}/${promo.mapPrice.currency}`,
       };

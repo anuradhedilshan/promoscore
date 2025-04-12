@@ -9,7 +9,7 @@ const defaultRequestBodyPromotion: SearchRequest<SearchRequestPromotion>[] = [
     indexName: "_cheapest",
     params: {
       aroundLatLng: "44.4267674, 26.1025384",
-      aroundRadius: 5000,
+      aroundRadius: 15000,
       facets: [
         "brand",
         "category",
