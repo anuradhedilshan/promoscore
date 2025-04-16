@@ -9,6 +9,7 @@ interface BaseSearchRequestParams {
   query: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   facetFilters?: Array<any>;
+  favoriteKey: string;
 }
 
 export interface SearchRequestArticle extends BaseSearchRequestParams {}

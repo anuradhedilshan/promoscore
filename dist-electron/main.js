@@ -18,25 +18,26 @@ import Z from "zlib";
 import { EventEmitter as kn } from "events";
 const _n = [
   {
-    indexName: "_cheapest",
+    indexName: "search-promoscore-promotions",
     params: {
       aroundLatLng: "44.4267674, 26.1025384",
-      aroundRadius: 15e3,
+      aroundRadius: 1e4,
       facets: [
         "brand",
         "category",
         "characteristics_search",
-        "is_promo",
+        "market",
         "origin",
         "promo_score",
         "retailer"
       ],
-      filters: "",
+      favoriteKey: "id",
+      filters: "NOT offer_type:coupon",
       highlightPostTag: "__/ais-highlight__",
       highlightPreTag: "__ais-highlight__",
-      hitsPerPage: 2,
-      maxValuesPerFacet: 2,
-      page: 1,
+      hitsPerPage: 30,
+      maxValuesPerFacet: 20,
+      page: 0,
       query: ""
     }
   }
@@ -45,12 +46,13 @@ const _n = [
     indexName: "search-promoscore-articles",
     params: {
       facets: ["brand", "category", "characteristics_search", "origin"],
+      favoriteKey: "id",
       filters: "country:ro",
       highlightPostTag: "__/ais-highlight__",
       highlightPreTag: "__ais-highlight__",
-      hitsPerPage: 2,
-      maxValuesPerFacet: 2,
-      page: 1,
+      hitsPerPage: 30,
+      maxValuesPerFacet: 20,
+      page: 0,
       query: ""
     }
   }
@@ -14496,7 +14498,7 @@ function Bt(e, a) {
 Ue.handle(
   "search_promoscore",
   async (e, a, i) => {
-    wa.log("Searching");
+    wa.log("Searching"), console.log("seacing", i);
     const { results: n } = await pn(a, i);
     if (!n || n.length === 0)
       throw new Error("No results found");

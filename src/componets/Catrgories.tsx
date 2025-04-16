@@ -45,6 +45,8 @@ function CategoriesComponent() {
         | SearchRequest<SearchRequestArticle | SearchRequestPromotion>[]
         | undefined
     ) => {
+      console.log("filtersr",facetFilters);
+
       setError(null);
       window.MyApi.searchData(state.selectedType, facetFilters)
         .then((d) => {
