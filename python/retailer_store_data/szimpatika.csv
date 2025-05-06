@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Szimpatika,ret_000007LElR8O7l2zVlV9vmdawim,30660509,Just vitamin c,Arcápolási kiegészítők,0.22,Gyula,Dob u. 14.,5700,46.64120101928711,21.278799057006836,"https://www.google.com/maps/search/?api=1&query=46.64120101928711,21.278799057006836&query_place_id=null"

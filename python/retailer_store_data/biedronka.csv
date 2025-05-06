@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Biedronka,ret_000005o5yyrDRdZ6xmy1bnxaqd8,30814964,"Kristin hannah ""powrót do domu""",Książki dla dorosłych,0,Ustrzyki dolne,Polskiego Czerownego Krzyża 19,38-700,49.4329948425293,22.576940536499023,"https://www.google.com/maps/search/?api=1&query=49.4329948425293,22.576940536499023&query_place_id=null"

@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Media markt,ret_000000atdpMeDl4UBicAxHlyqM0,30716667,Suszarka as6550e,Suszarki do włosów,0,Krosno,Bieszczadzka 29,38-400,49.674156188964844,21.774991989135742,"https://www.google.com/maps/search/?api=1&query=49.674156188964844,21.774991989135742&query_place_id=null"

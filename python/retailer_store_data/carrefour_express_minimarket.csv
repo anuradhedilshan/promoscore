@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Carrefour express minimarket,ret_0000045uBvFRi0eut3WxdKJzSYK,30838189,Schab tatrzański,Schaby na wagę,0,Sanok,Traugutta 78/1,38-500,49.575655,22.1975878,"https://www.google.com/maps/search/?api=1&query=49.575655,22.1975878&query_place_id=ChIJs-blMINtPEcRSx0TcUS0-fY"

@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Benu gyógyszertár,ret_000003IcKDInnn9WsIgTibefKvD,30668474,"Immune, filmtabletta",Étrendkiegészitő,0.16,Békéscsaba,Andrássy út 37-43. (Csaba Center),5600,46.676700592041016,21.090099334716797,"https://www.google.com/maps/search/?api=1&query=46.676700592041016,21.090099334716797&query_place_id=null"

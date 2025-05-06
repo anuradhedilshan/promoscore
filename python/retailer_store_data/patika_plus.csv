@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Patika plus,ret_000002BR6NdUoP3su0QYM5Ac8fU,30764932,Preparation h végbélkenőcs,Aranyér elleni krém,0.1,Gyula,Kétegyházi u. 1.,,46.6343994140625,21.25790023803711,"https://www.google.com/maps/search/?api=1&query=46.6343994140625,21.25790023803711&query_place_id=null"

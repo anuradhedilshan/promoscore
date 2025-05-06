@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Merkury market,ret_000001QMPvP7Uj0FiScDnHE9XfA,30663570,Rekawice robocze,Odzież robocza,0,Sanok,Krakowska 194,38-500,49.5696907043457,22.156116485595703,"https://www.google.com/maps/search/?api=1&query=49.5696907043457,22.156116485595703&query_place_id=ChIJHXJWQABtPEcRCdzXcwbQewo"

@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Abc,ret_000000WARSBQaeutF4D9qV8K0FA,30852074,Wino,Wina musujące,0.54,Wetlina,Wetlina 101,38-608,49.158241271972656,22.462722778320312,"https://www.google.com/maps/search/?api=1&query=49.158241271972656,22.462722778320312&query_place_id=null"

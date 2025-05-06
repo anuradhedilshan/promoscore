@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Sps handel cash & carry,ret_000003wW3hEbPFcISTGGb5C8KZu,30635328,Płatki owsiane błyskawiczne,Płatki owsiane,0,Ostrołęka,Targowa 34,07-410,0,0,"https://www.google.com/maps/search/?api=1&query=0,0&query_place_id=ChIJIaJPznFBHkcRXsJVlbGwJBI"

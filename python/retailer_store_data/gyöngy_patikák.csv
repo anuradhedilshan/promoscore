@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Gyöngy patikák,ret_000005ZnQagcGeovxdTTF3mRYQc,30665384,"Immuno+, immunrendszer erősitésére és a fehérjék újjáépitésére",Étrendkiegészitő,0.09,Kevermes,BATTONYAI ÚT 8/A.,5744,46.414798736572266,21.179399490356445,"https://www.google.com/maps/search/?api=1&query=46.414798736572266,21.179399490356445&query_place_id=ChIJkWWhqRfIRUcRESdNk3kv7VA"

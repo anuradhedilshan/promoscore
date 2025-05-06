@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Rossmann,ret_000005rxuW329pFMYLlF6QcJwBv,30810317,Pomadka w płynie,Pomadki make-up/ szminki,0,Ustrzyki dolne,"Rynek 23,24,25",38-700,49.42955780029297,22.588104248046875,"https://www.google.com/maps/search/?api=1&query=49.42955780029297,22.588104248046875&query_place_id=null"

@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Eurocash dystrybucja,ret_000002uZ6FedgvQbKg2OJ7yP4zR,30712559,Sałatka jarzynowa,Sałatki majonezowe warzywne/jajeczne paczkowane,0,Krosno,Przemysłowa 34,38-457,49.673728942871094,21.719894409179688,"https://www.google.com/maps/search/?api=1&query=49.673728942871094,21.719894409179688&query_place_id=ChIJ-c0KDGVJPEcRXSrOVZl6Eo0"

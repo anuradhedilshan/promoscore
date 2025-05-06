@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Auchan supermarket,ret_000003CJKDnaMB30kLegmQn5kY9,30812251,Polędwiczka z kurczaka w marynacie paprykowej,Mięso drobiowe w marynacie paczkowane,0.23,Limanowa,Żwirki I Wigury 4,34-600,49.7003059387207,20.416162490844727,"https://www.google.com/maps/search/?api=1&query=49.7003059387207,20.416162490844727&query_place_id=ChIJ-QLiCcEdFkcRQ3kQB8sVmIw"

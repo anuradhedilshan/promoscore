@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Penny,ret_000000bCojRHCW26yENIH8cgFPR,30808456,Bol portelan,Bol portelan/ceramica/sticla/arcopal,0,Bucuresti,V.V. Stanciu 213,040433,44.41263961791992,26.11440658569336,"https://www.google.com/maps/search/?api=1&query=44.41263961791992,26.11440658569336&query_place_id=ChIJ1xFnxv3-sUARu7bIbsHocL4"

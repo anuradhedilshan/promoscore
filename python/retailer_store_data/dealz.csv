@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Dealz,ret_000002x4lqcIajZCASkS3UvMI10,30804502,Okulary,Okulary przeciwsłoneczne,0,Krosno,Niepodległości 6B,38-400,49.6873779296875,21.769527435302734,"https://www.google.com/maps/search/?api=1&query=49.6873779296875,21.769527435302734&query_place_id=null"

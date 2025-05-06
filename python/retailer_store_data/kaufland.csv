@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Kaufland,ret_000005HQ7NHE6LtaN8002TlloXx,30855637,Krzesło kempingowe,Meble turystyczne,0,Sanok,Królowej Bony 10,38-500,49.561553955078125,22.211681365966797,"https://www.google.com/maps/search/?api=1&query=49.561553955078125,22.211681365966797&query_place_id=ChIJ_w-9a4BtPEcRexcj9smmkXI"

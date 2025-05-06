@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Aldi,ret_000002JX034DHZIoT9aMG5uegsa,30809305,Clogsy damskie 37-40,Obuwie damskie,0,Tarnów,SZKOTNIK 15,33-100,50.0142228,20.9767986,"https://www.google.com/maps/search/?api=1&query=50.0142228,20.9767986&query_place_id=ChIJd_EgBz2FPUcRlgbDfg9C9Ek"

@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Stokrotka,ret_000006RbANzNA3xSFfeVDDblPRL,30832450,Wino,Wina musujące,0,Sanok,Robotnicza 15,38-500 ,49.548736572265625,22.211267471313477,"https://www.google.com/maps/search/?api=1&query=49.548736572265625,22.211267471313477&query_place_id=null"

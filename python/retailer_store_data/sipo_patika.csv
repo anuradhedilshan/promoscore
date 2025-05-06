@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Sipo patika,ret_000005oH1UHAPksl13GQl3a5z9F,30674817,Gél 15mg/g,Lábápolás,0.35,Budapest,Vak Bottyán Utca 75/c,1191,47.46229934692383,19.14780044555664,"https://www.google.com/maps/search/?api=1&query=47.46229934692383,19.14780044555664&query_place_id=null"

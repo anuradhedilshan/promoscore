@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Polomarket,ret_000001ioizYtFSPFVjHAz9tKcfT,30779850,Ręcznik kuchenny,Ręczniki papierowe do użytku domowego w rolkach,0,Szczyrk,Jasna 1,43-370,49.71617889404297,19.027435302734375,"https://www.google.com/maps/search/?api=1&query=49.71617889404297,19.027435302734375&query_place_id=null"

@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Globi,ret_000001N6bOSyLOCfuPlSbunFeX2,30835817,Kiełbaski białe z szynki,Kiełbasy tradycyjne paczkowane,0,Bolestraszyce,Bolestraszyce Nr. 8,37-722 ,49.817447662353516,22.860383987426758,"https://www.google.com/maps/search/?api=1&query=49.817447662353516,22.860383987426758&query_place_id=ChIJt0Ck7A95O0cR4adIpKwzuSo"

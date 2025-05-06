@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Carrefour market,ret_00000518OZDWz99T4rZdrU2Wt4J,30816457,Bere,Bere blonda doza,0.17,Bucuresti,SINCAI 1,040311,44.413902282714844,26.105953216552734,"https://www.google.com/maps/search/?api=1&query=44.413902282714844,26.105953216552734&query_place_id=ChIJnZ7bkFuKTUcRkwx4C3eSSs0"

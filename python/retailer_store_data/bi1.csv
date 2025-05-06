@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Bi1,ret_000002EcXWPs731cBT4vxnP4cBF,30813366,Zmiotka,Mopy/ miotły/ zmiotki/ szufelki,0,Rzeszów,Wincentego Witosa 21,35-115,50.03887176513672,21.97566795349121,"https://www.google.com/maps/search/?api=1&query=50.03887176513672,21.97566795349121&query_place_id=ChIJ8eFkJgv7PEcRmnNLaXrkj8w"

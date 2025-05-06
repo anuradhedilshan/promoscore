@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Pepco,ret_000002Rk8YBD5V3UnC3F5YWz4xs,30807274,Szorty męskie s-2xl,Odzież męska,0,Ustrzyki dolne,Rynek 3A,38-700,49.42946243286133,22.586984634399414,"https://www.google.com/maps/search/?api=1&query=49.42946243286133,22.586984634399414&query_place_id=null"

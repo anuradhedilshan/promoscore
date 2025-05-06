@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Netto,ret_000005R51m84K5y9HgFcukbk2NN,30833526,Mata węchowa,Akcesoria dla psów,0.5,Skawina,Wspólna 7,32-050,49.97594451904297,19.830522537231445,"https://www.google.com/maps/search/?api=1&query=49.97594451904297,19.830522537231445&query_place_id=ChIJX4Gz-YxdFkcRor8vL76bYuI"

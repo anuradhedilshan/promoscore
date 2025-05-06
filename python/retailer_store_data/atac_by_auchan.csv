@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Atac by auchan,ret_000005OPdvCF8DYMMxSYKPTc5Sk,30760529,Chipsuri ardei,Chipsuri clasice,0.15,Ploiesti,COMUNA BLEJOI,1200,44.9446743,25.9639219,"https://www.google.com/maps/search/?api=1&query=44.9446743,25.9639219&query_place_id=ChIJOfmxt5FJskARhg9RcmjpWEk"

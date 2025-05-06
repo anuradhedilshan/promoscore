@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Kulcs patika,ret_000002WG1arb4Crr3y4Pzo7snvh,30683048,Oliva d3-vitamin,Étrendkiegészitő,0.1,Lőkösháza,Alapítók útja 23.,5743,46.4275016784668,21.232500076293945,"https://www.google.com/maps/search/?api=1&query=46.4275016784668,21.232500076293945&query_place_id=null"

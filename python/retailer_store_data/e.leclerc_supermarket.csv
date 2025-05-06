@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+E.leclerc supermarket,ret_0000044ilDjX2Biel5imMhfe3ah,30821206,Zapach samochodowy black,Odświeżacze samochodowe,0,Przemyśl,Sportowa 11,37-700,49.78710174560547,22.775606155395508,"https://www.google.com/maps/search/?api=1&query=49.78710174560547,22.775606155395508&query_place_id=ChIJ1y-N7iB_O0cRh2TCDXRt-K8"

@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Pingvin patika,ret_000005HcqrSJuM3bVvIH4CXo3gS,30815043,Valerosolv 5mg,"Altatók, nyugtatók",0.32,Békéscsaba, Andrássy út14.,5600,46.67829895019531,21.094900131225586,"https://www.google.com/maps/search/?api=1&query=46.67829895019531,21.094900131225586&query_place_id=null"

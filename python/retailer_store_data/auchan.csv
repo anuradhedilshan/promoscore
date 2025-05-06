@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Auchan,ret_000001aRmtYOBBEPcKIxnUQ0Nq9,30811911,Stojak na kwiaty,Donice ogrodowe/ skrzynki balkonowe,0,Rzeszów,Krasne 20B,36-007,50.03929138183594,22.077192306518555,"https://www.google.com/maps/search/?api=1&query=50.03929138183594,22.077192306518555&query_place_id=ChIJayAtBJ_6PEcRmRCIQD0u5SM"

@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Eurocash,ret_000003Jv9YcoTvkCXUyLTDgZA2E,30686365,Lizak deseniowy,Lizaki,0,Lesko,Przemysłowa 12,38-600,49.47762680053711,22.330350875854492,"https://www.google.com/maps/search/?api=1&query=49.47762680053711,22.330350875854492&query_place_id=null"

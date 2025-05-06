@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Lewiatan,ret_000002Iznv0IlU8NWLgw4y6eoN7,30620703,Kalafior,Kalafior 1 sztuka,0,Lutowiska,Pszczeliny 19,38-713,49.164817810058594,22.690237045288086,"https://www.google.com/maps/search/?api=1&query=49.164817810058594,22.690237045288086&query_place_id=ChIJF272JP3dO0cRDzWdj_h79CY"

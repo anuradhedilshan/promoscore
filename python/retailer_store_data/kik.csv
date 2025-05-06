@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Kik,ret_000001xqkhVcRbB3zcAl6XF9a31,30611646,Traktor,Zabawki pojazdy pojedyncze,0,Przemyśl,Lwowska 17 a,37-700,49.78379821777344,22.81039047241211,"https://www.google.com/maps/search/?api=1&query=49.78379821777344,22.81039047241211&query_place_id=null"

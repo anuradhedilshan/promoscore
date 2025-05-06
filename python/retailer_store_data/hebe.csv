@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Hebe,ret_00000791Nia3v6cIU3FiMo1cKPg,30435298,Tusz do rzęd make me long,Tusze do rzęs/ bazy pod tusze do rzęs,0,Przemyśl,W. Brudzewskiego 1,37-700,49.79110336303711,22.783069610595703,"https://www.google.com/maps/search/?api=1&query=49.79110336303711,22.783069610595703&query_place_id=null"

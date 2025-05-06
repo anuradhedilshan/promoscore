@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Drogerie laboo partner,ret_000004xMHgfTtDB9LbpW5Ieihzj,30692488,Papier toaletowy delikatnie biały,Papier toaletowy do użytku domowego,0,Grochowce,Grochowice 257,37-733,49.73324966430664,22.752164840698242,"https://www.google.com/maps/search/?api=1&query=49.73324966430664,22.752164840698242&query_place_id=null"

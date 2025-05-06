@@ -37,3 +37,96 @@ export function Post(
     }
   );
 }
+
+export interface OfferResponse {
+  data: {
+    id: string;
+    ean: string;
+    article: {
+      id: string;
+      name: string;
+      slug: string;
+      brand: string;
+      packaging: string;
+      category: string;
+      parentCategoryId: string;
+    };
+    picture: string;
+    country: string;
+    market: string;
+    retailer: {
+      id: string;
+      name: string;
+      logo: string;
+    };
+    score: string;
+    discount: number;
+    externalLink: string;
+    period: Record<string, unknown>;
+    status: string;
+    daysRemaining: number;
+    unitPrice: {
+      amount: number;
+      currency: string;
+      unit: string;
+    };
+    mapPrice: {
+      amount: number;
+      currency: string;
+    };
+    crossedPrice: {
+      amount: number;
+      currency: string;
+    };
+    priceEvolution: {
+      [quarter: string]: number;
+    };
+    monthlyVariation: number[];
+    priceStats: {
+      count: number;
+      min: number;
+      max: number;
+    };
+    tendency: {
+      "3M": number;
+      "1Y": number;
+      FULL: number;
+    };
+    type: string;
+  };
+}
+
+export type LocationData = {
+  id: string;
+  placeId: string;
+  gmapUrl: string;
+  country: string;
+  street: string;
+  zipCode: string;
+  location: [number, number]; // [latitude, longitude]
+  city: string;
+  retailer: {
+    id: string;
+    name: string;
+    logo: string;
+    website: string;
+  };
+  distance: number;
+};
+
+export function getOfferDetails(
+  offerId: number
+): Promise<AxiosResponse<OfferResponse>> {
+  return axios.get(`https://promoscore.io/api/offers/${offerId}`, {
+    headers: HeadersS,
+  });
+}
+
+export async function fetchStoreData(
+  retailerId: string
+): Promise<AxiosResponse<{ data: LocationData }>> {
+  return await axios.get(
+    `https://promoscore.io/api/retailers/${retailerId}/nearest-store?latLng=44.4267674%2C26.1025384&distance=9000000`,
+    { headers: HeadersS }
+  );
+}

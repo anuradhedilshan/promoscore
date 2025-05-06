@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Profi loco,ret_0000048H2ojKPOeGOp7Xgng5nnn,30770843,Detergent pentru rufe 2 in 1 pudra concentrata prospetimea muntelui,Detergent automat pudra < 3kg,0.44,Bucuresti,"București Strada, Șoseaua Olteniței 26",917260,44.400136,26.1030253,"https://www.google.com/maps/search/?api=1&query=44.400136,26.1030253&query_place_id=ChIJ8dC1nZL_sUARGtzys8pxMbU"

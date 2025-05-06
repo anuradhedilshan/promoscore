@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Mega image,ret_0000065g8DI3uaQ5gScE702ja8T,30808678,Gogoasa glazurata capsuni cupidon,Produse patiserie proaspete individuale,0.25,Bucuresti,Bulevardul Unirii 23,030167,44.4273773,26.0997767,"https://www.google.com/maps/search/?api=1&query=44.4273773,26.0997767&query_place_id=ChIJLzt_UhT_sUAR3JAm2dRMByw"

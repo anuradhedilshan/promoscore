@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Super-pharm,ret_000004bAh4yeRkH1wiMw50uJGCR,30690059,Woda toaletowa,Wody toaletowe/ perfumy męskie,0.55,Rzeszów,Al. Kopisto 1,35-315,50.02707290649414,22.013803482055664,"https://www.google.com/maps/search/?api=1&query=50.02707290649414,22.013803482055664&query_place_id=ChIJU84SzFf6PEcRIV3qani0ZY8"

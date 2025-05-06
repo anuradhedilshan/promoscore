@@ -9,7 +9,8 @@ import {
   SearchRequest,
 } from "../src/engine/types";
 
-ipcRenderer.on("event", (_e, arg) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ipcRenderer.on("event", (_e:any, arg:any) => {
   console.log("on Event call from preload");
 
   sendEvent(arg.Type, arg.message);
@@ -24,8 +25,8 @@ function sendEvent(
 
 window.MyApi = {
   openFilePicker: async () => {
-    const e =  await ipcRenderer.invoke("openPathDialog");
-    return e.filePaths[0]
+    const e = await ipcRenderer.invoke("openPathDialog");
+    return e.filePaths[0];
   },
   OnEvent: null,
   searchData: (

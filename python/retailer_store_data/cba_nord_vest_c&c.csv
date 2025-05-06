@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Cba nord vest c&c,ret_000005LueAIpt8LEdd0ftsS4Zrf,30815136,Gel de dus  jasmine and milk,Gel de dus dama,0.21,Arad,"Poetului 1/C, Uta 1, Hala 11",310345,46.186561584472656,21.312267303466797,"https://www.google.com/maps/search/?api=1&query=46.186561584472656,21.312267303466797&query_place_id=ChIJ8QVjBUGYRUcR4U0xtn3ExEg"

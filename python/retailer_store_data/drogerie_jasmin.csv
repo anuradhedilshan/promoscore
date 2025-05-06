@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Drogerie jasmin,ret_000001dAWpHQBJyzwEQujSdvNHg,30779299,Rękaw cukierniczy + 8x końcówek,Rękawice kuchenne,0,Rymanów,Rynek 7,38-480,49.57622146606445,21.86826515197754,"https://www.google.com/maps/search/?api=1&query=49.57622146606445,21.86826515197754&query_place_id=null"

@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Drogerie koliber,ret_000002blcM80Medsrer9WQoq2mx,30777084,Świeca pieńkowa 80/48 mm,Świece/ świece zapachowe,0,Grybów,Rynek 15,33-300,49.62535858154297,20.94489860534668,"https://www.google.com/maps/search/?api=1&query=49.62535858154297,20.94489860534668&query_place_id=null"

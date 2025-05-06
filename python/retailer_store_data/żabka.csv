@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Żabka,ret_000007fDV0B9tqOG6QVWLWKEdZz,30095753,Napój white chocolate mocha holiday edition,Napoje kawowe w płynie,0,Ustrzyki dolne,Rynek 25/U2,38-700,49.43006134033203,22.588701248168945,"https://www.google.com/maps/search/?api=1&query=49.43006134033203,22.588701248168945&query_place_id=ChIJm5TnfcXyO0cREevfzWCA5Tg"

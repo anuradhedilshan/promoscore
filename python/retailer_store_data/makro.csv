@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Makro,ret_000001mozwc7iZmxKA1bjW711iN,30773011,Ketchup łagodny,Ketchupy łagodne,0.14,Rzeszów,Al. Armii Krajowej  92,35-307,50.03041076660156,22.038068771362305,"https://www.google.com/maps/search/?api=1&query=50.03041076660156,22.038068771362305&query_place_id=ChIJH7ZBJ4v6PEcRM7XPZTsno6w"

@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Eurocash serwis,ret_000001XfxxYXcplZCFmrcBIGoqd,30629846,Taśma pakowa 44mm,Taśmy pakowe/ oklejarki do taśmy,0,Przemyśl,Jasińskiego 49,37-700,49.77262878417969,22.80548667907715,"https://www.google.com/maps/search/?api=1&query=49.77262878417969,22.80548667907715&query_place_id=null"

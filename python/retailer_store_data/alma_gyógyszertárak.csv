@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Alma gyógyszertárak,ret_000006GPOKXJKFI6vfn0XgoA4rv,30665313,"Krém,kéztő alagut szindroma forte",Kézkrém,0.14,Sarkad,Gyulai út 8/A,5720,46.73789978027344,21.370800018310547,"https://www.google.com/maps/search/?api=1&query=46.73789978027344,21.370800018310547&query_place_id=null"

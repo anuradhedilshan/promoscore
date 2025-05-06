@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Drogerie laboo,ret_000003kNKLkXCuIIKYfkXX2Yn6J,30692684,Maszynki do golenia,Maszynki do golenia jednorazowe męskie,0,Brzozów,Armii Krajowej 8,36-200,49.69416427612305,22.017581939697266,"https://www.google.com/maps/search/?api=1&query=49.69416427612305,22.017581939697266&query_place_id=ChIJWTfiFfJCPEcR5qiY-1xBU00"

@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Prim market,ret_000004Bef1EkUNtvwAIsFtDT7dK,30665938,Wino,Wina białe,0.18,Nowa wieś,Nowa Wieś 16B,07-210,49.50941467285156,20.88766860961914,"https://www.google.com/maps/search/?api=1&query=49.50941467285156,20.88766860961914&query_place_id=null"

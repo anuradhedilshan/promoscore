@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Lidl,ret_000003O3LJLwdkJJwHyFhjiEU6v,30800976,Skarpetki dziecięce,Odzież dziecięca,0,Lesko,Fredry 2,38-600,49.47796630859375,22.323163986206055,"https://www.google.com/maps/search/?api=1&query=49.47796630859375,22.323163986206055&query_place_id=ChIJG95GZLMLPEcRQ8zzQvU6kXk"

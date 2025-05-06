@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Kakto,ret_0000074cpIFHcnGpEcmqIQAbXvi,30634233,"Telewizor 55"" 55c655",Tv led 48-59'',0,Dynów,Kazimierza Wielkiego,36-065,49.81344985961914,22.234140396118164,"https://www.google.com/maps/search/?api=1&query=49.81344985961914,22.234140396118164&query_place_id=ChIJJUGJrYJhPEcRpHMkbqrBDAU"

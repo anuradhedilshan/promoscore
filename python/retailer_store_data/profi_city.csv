@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Profi city,ret_000002H5DuBJNErbQ4yzgvXYW1f,30770940,Napolitane cu crema de cacao si crema de lapte alfers,Napolitane,0.36,Bucuresti,"Serban Voda 43, Bl. 2",040203,44.421257,26.102834,"https://www.google.com/maps/search/?api=1&query=44.421257,26.102834&query_place_id=ChIJfeCXaBD_sUARvjkVoy4nmRs"

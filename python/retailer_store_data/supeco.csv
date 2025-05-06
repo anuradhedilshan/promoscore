@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Supeco,ret_0000057VCGAJNpClHDAMD5Xj70W,30812927,Bere,Bere blonda sticla,0.06,Bucuresti,"Liviu Rebreanu1, Sector 3",031771,44.418968200683594,26.147092819213867,"https://www.google.com/maps/search/?api=1&query=44.418968200683594,26.147092819213867&query_place_id=ChIJLSSUJNP_sUARAbUOTL68zto"

@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Selgros,ret_000004xMxHLtErNCzJFQRlsPnbp,30834272,Whisky tuba,Whisky scotch,0,Kraków,Nowohucka 52,31-580,50.05845642089844,19.999149322509766,"https://www.google.com/maps/search/?api=1&query=50.05845642089844,19.999149322509766&query_place_id=ChIJJb8NmtpEFkcR3fQJHkE6FUc"

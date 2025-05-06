@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Dm,ret_000005RIoUFGqXPZAEP447WjLwq,30837392,Szempilla és szemöldök formázó gél,Szemfestés,0,Gyula,KÉTEGYHÁZI U. 4,5700,46.52980041503906,21.25200080871582,"https://www.google.com/maps/search/?api=1&query=46.52980041503906,21.25200080871582&query_place_id=null"

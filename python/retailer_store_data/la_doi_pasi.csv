@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+La doi pasi,ret_000003Dqv5RQhN5v6FNbGL7ju91,30623701,Bere exceptional,Bere blonda doza,0,Calarasi,Calarasi Bucuresti 167,030614,44.43267059326172,26.125152587890625,"https://www.google.com/maps/search/?api=1&query=44.43267059326172,26.125152587890625&query_place_id=null"

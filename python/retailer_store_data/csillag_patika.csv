@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Csillag patika,ret_0000039M17CyP21xceIPNONVMpz,30660311,"Transparent steril filmkötszer sebpárnával 5x7,2 cm","Sebkötöző,-tapasz",0.4,Budapest,Zsombolyai  8.,1113,47.475799560546875,19.03730010986328,"https://www.google.com/maps/search/?api=1&query=47.475799560546875,19.03730010986328&query_place_id=null"

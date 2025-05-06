@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Jysk,ret_000002jB3uMPyrPyFhoH5KShDmy,30773476,Pufa gislev,Pufy i podnóżki do salonu,0,Sanok,Beksińskiego 4,38-500,49.54807662963867,22.21770668029785,"https://www.google.com/maps/search/?api=1&query=49.54807662963867,22.21770668029785&query_place_id=ChIJ83sKR4VyPEcR7Xz27JAuXII"

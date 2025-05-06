@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Dino,ret_000003E56xzakkN6LO1mbxVAuPR,30809171,Chamaedorea,Rośliny doniczkowe,0,Maniowy,Potok 2,34-436,49.45882797241211,20.26951789855957,"https://www.google.com/maps/search/?api=1&query=49.45882797241211,20.26951789855957&query_place_id=ChIJN0smk2H5FUcRwkHFrXr12Ws"

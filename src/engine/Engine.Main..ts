@@ -5,7 +5,13 @@ import {
   defaultRequestBodyPromotion,
 } from "./default";
 import JSONWriter from "./JSONWriter";
-import { ContentType, Post } from "./Shared/lib";
+import {
+  ContentType,
+  fetchStoreData,
+  getOfferDetails,
+  LocationData,
+  Post,
+} from "./Shared/lib";
 import Logger from "./Shared/Logger";
 import {
   SearchRequest,
@@ -60,6 +66,7 @@ export async function search_promoscore(
 }
 
 let DATA: any[] = [];
+
 function formatPromotions(promotions: any[], contentType: ContentType) {
   return promotions.map((e) => {
     e = cleanData(e, contentType);
@@ -84,6 +91,82 @@ function formatPromotions(promotions: any[], contentType: ContentType) {
 
     return formattedPromotion;
   });
+}
+
+const retailerCache = new Map<
+  string,
+  { name: string; retailer: LocationData }
+>();
+
+interface RetailerInfo {
+  name: string;
+  retailer: LocationData;
+  offerId?: number;
+}
+
+async function getRetailerData(
+  retailerId: string,
+  offerId?: number
+): Promise<RetailerInfo | null> {
+  if (!retailerId) {
+    logger?.warn("Empty retailerId passed");
+    return null;
+  }
+
+  if (retailerCache.has(retailerId)) {
+    logger?.log(`Found retailer ${retailerId} in cache`);
+    console.log("data AVible in systen ", retailerCache.get(retailerId)!);
+
+    return retailerCache.get(retailerId)!;
+  }
+
+  logger?.log(`Retailer ${retailerId} not found in cache, fetching details...`);
+
+  try {
+    if (offerId) {
+      logger?.log(`Fetching offer details for ID: ${offerId}`);
+      const offerResponse = await getOfferDetails(offerId);
+
+      const { retailer } = offerResponse.data.data;
+
+      if (retailer && retailer.name === retailerId) {
+        console.log("fetching retailer id", retailer.id);
+        const storeData = await fetchStoreData(retailer.id);
+        console.log("reteerlers", storeData.data);
+        if (storeData.data) {
+          const retailerInfo: RetailerInfo = {
+            name: retailer.name,
+            retailer: storeData.data.data,
+          };
+          retailerCache.set(retailerId, retailerInfo);
+          return retailerInfo;
+        }
+      }
+    }
+  } catch (e: any) {
+    console.error(e.message);
+
+    logger?.error("Error fetching retailer");
+    return null;
+  }
+
+  return null;
+}
+
+async function addRetailer(promotions: any[]) {
+  const updated = await Promise.all(
+    promotions.map(async (e) => {
+      if (e?.retailer?.name) {
+        const ret = await getRetailerData(e.retailer.name, e.id);
+        if (ret) {
+          e.retailer = ret;
+        }
+      }
+      return e;
+    })
+  );
+
+  return updated;
 }
 
 interface CleanConfig {
@@ -137,7 +220,14 @@ export async function start(
         const { hits, nbPages } = results[0];
         console.log("Nb Page", nbPages);
         const dhits = formatPromotions(hits, type);
-        DATA = dhits;
+        if (type == "promotions") {
+          console.log("IS PROMOTION ******");
+
+          DATA = await addRetailer(dhits);
+        } else {
+          DATA = dhits;
+        }
+
         totalPages = nbPages as unknown as number;
         logger?.log(`Fetching page ${currentPage} Done Out of ${totalPages}`);
 

@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Drogerie jawa,ret_000000doxmNIEOkQ4ZNBkgS6DtF,30690517,Mikrozłuszczający tonik-esencja 3 enzymy,Toniki i hydrolaty do twarzy dla kobiet,0.5,Krasnystaw,Okrzei 1,22-300,50.983177185058594,23.1690731048584,"https://www.google.com/maps/search/?api=1&query=50.983177185058594,23.1690731048584&query_place_id=null"

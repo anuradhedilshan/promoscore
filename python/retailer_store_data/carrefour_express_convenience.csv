@@ -1,0 +1,2 @@
+retailer_name,retailer_id,offer_id,article_name,market,discount,city,street,zipCode,lat,lng,gmapUrl
+Carrefour express convenience,ret_0000033JnCtPL5aRoB1Gnw0M2DD,30838247,Chipsy spicy chicken,Chipsy ziemniaczane,0,Jasło,Bieszczadzka25,38-200,49.45328903198242,21.305240631103516,"https://www.google.com/maps/search/?api=1&query=49.45328903198242,21.305240631103516&query_place_id=null"
